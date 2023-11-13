@@ -9,6 +9,7 @@ using UnityEngine.AI;
 public class Slime : MonoBehaviour
 {
     #region property
+    public float WaitTime => _waitTime;
     public bool IsChase => _isChase;
     public bool IsAttack => _isAttack;
     public Transform Target => _target;
@@ -22,8 +23,11 @@ public class Slime : MonoBehaviour
     #endregion
 
     #region private
+    /// <summary>待ち時間</summary>
+    private float _waitTime = 1f;
     /// <summary>サーチエリアにプレイヤーがいるかどうか</summary>
     private bool _isChase = false;
+    /// <summary>攻撃可能距離にプレイヤーがいるかどうか</summary>
     private bool _isAttack = false;
     /// <summary>プレイヤーのTransform</summary>
     private Transform _target;
@@ -56,6 +60,7 @@ public class Slime : MonoBehaviour
     {
         _controller.ChangeState(SlimeState.Idle);
     }
+
     /// <summary>
     /// Search状態に移行
     /// </summary>
@@ -63,6 +68,7 @@ public class Slime : MonoBehaviour
     {
         _controller.ChangeState(SlimeState.Search);
     }
+
     /// <summary>
     /// Chase状態に移行
     /// </summary>
@@ -70,6 +76,7 @@ public class Slime : MonoBehaviour
     {
         _controller.ChangeState(SlimeState.Chase);
     }
+
     /// <summary>
     /// Attack状態に移行
     /// </summary>
@@ -77,6 +84,7 @@ public class Slime : MonoBehaviour
     {
         _controller.ChangeState(SlimeState.Attack);
     }
+
     /// <summary>
     /// SpecialAttack状態に移行
     /// </summary>
@@ -103,6 +111,9 @@ public class Slime : MonoBehaviour
         _isChase = isChase;
     }
 
+    /// <summary>
+    /// 距離判断
+    /// </summary>
     public void CheckDistance()
     {
         if(Vector3.Distance(transform.position,_target.position) < 1)
@@ -113,6 +124,15 @@ public class Slime : MonoBehaviour
         {
             _isAttack = false;
         }
+    }
+
+    /// <summary>
+    /// 待ち時間のセット
+    /// </summary>
+    /// <param name="waitTime">待ち時間</param>
+    public void SetWaitTime(float waitTime)
+    {
+        _waitTime = waitTime;
     }
     #endregion
 
