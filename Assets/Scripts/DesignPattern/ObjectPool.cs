@@ -26,7 +26,7 @@ public class ObjectPool : SingletonMonoBehaviour<ObjectPool>
     /// <param name="prefab">使用するオブジェクト</param>
     /// <param name="pos">位置</param>
     /// <returns></returns>
-    public GameObject GetGameObject(GameObject prefab, Vector2 pos)
+    public GameObject GetGameObject(GameObject prefab, Vector3 pos)
     {
         //プレハブの名前をkeyに
         string key = prefab.name;
@@ -38,7 +38,7 @@ public class ObjectPool : SingletonMonoBehaviour<ObjectPool>
         }
 
         Queue<GameObject> gameObjects = _pooledGameObjects[key];
-        GameObject go = null;
+        GameObject go;
 
         if (gameObjects.Count > 0)
         {
