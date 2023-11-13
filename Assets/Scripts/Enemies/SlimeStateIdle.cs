@@ -30,12 +30,12 @@ public class SlimeStateIdle : SlimeStateBase
     public override void Entry()
     {
         base.Entry();
+        StartCoroutine(IdleCoroutine());
     }
 
     public override void UpdateSequence()
     {
         base.UpdateSequence();
-        _slime.Search();
     }
 
     public override void Exit()
@@ -45,5 +45,13 @@ public class SlimeStateIdle : SlimeStateBase
     #endregion
 
     #region private method
+    #endregion
+
+    #region coroutine method
+    private IEnumerator IdleCoroutine()
+    {
+        yield return new WaitForSeconds(_slime.WaitTime);
+        _slime.Search();
+    }
     #endregion
 }
