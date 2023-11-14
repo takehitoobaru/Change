@@ -1,5 +1,105 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3060202976097067898
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2327997858039574726}
+  - component: {fileID: 3246707524037105961}
+  - component: {fileID: 2110039041387256488}
+  - component: {fileID: 3210166371875556937}
+  - component: {fileID: 5111940521159889469}
+  - component: {fileID: 1622793795550767236}
+  m_Layer: 0
+  m_Name: WolfState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2327997858039574726
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3060202976097067898}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2282090589925773697}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3246707524037105961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3060202976097067898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a28cf1cd4b32b440bd5f2e653221ce4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2110039041387256488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3060202976097067898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 744ba90a67747234e9b43dc8856d9990, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _wolf: {fileID: 0}
+--- !u!114 &3210166371875556937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3060202976097067898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 450f0b07264398242aef63a45f1c0630, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _wolf: {fileID: 0}
+--- !u!114 &5111940521159889469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3060202976097067898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbdb748ad6b17e945ae24ada07289b72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _wolf: {fileID: 0}
+--- !u!114 &1622793795550767236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3060202976097067898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5323d642d16bdfc479d353ee27208b15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _wolf: {fileID: 0}
 --- !u!1 &6380159152764391292
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,7 +111,7 @@ GameObject:
   - component: {fileID: 2282090589925773697}
   - component: {fileID: 7118908682095072240}
   - component: {fileID: 6033202092311509817}
-  - component: {fileID: 5413628469782392814}
+  - component: {fileID: 8032747166924780236}
   m_Layer: 0
   m_Name: Wolf
   m_TagString: Player
@@ -33,6 +133,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5995022762869896704}
+  - {fileID: 2327997858039574726}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &7118908682095072240
@@ -85,7 +186,7 @@ CapsuleCollider:
   m_Height: 1.1536808
   m_Direction: 2
   m_Center: {x: 0.0074626803, y: -0.5, z: 0.39282858}
---- !u!114 &5413628469782392814
+--- !u!114 &8032747166924780236
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,11 +195,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6380159152764391292}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1d8c1ca70a9d7e48b070b7c0ea49d4f, type: 3}
+  m_Script: {fileID: 11500000, guid: b44c19ff49c7c884185e97ef7e184346, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 3
-  _rotateSpeed: 0.1
+  _player: {fileID: 0}
 --- !u!1001 &6391532898032606298
 PrefabInstance:
   m_ObjectHideFlags: 0
