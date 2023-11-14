@@ -4,23 +4,22 @@ using UnityEngine;
 
 public class PlayerStateController : MonoBehaviour
 {
+    #region serialize
+    [SerializeField]
+    private PlayerStateWolf _wolf = default;
+
+    [SerializeField]
+    private PlayerStateShark _shark = default;
+
+    [SerializeField]
+    private PlayerStateEagle _eagle = default;
+    #endregion
+
     #region private
     private bool _init = false;
     private IPlayerState _currentState;
     private IPlayerState _previousState;
-    private PlayerStateWolf _wolf;
-    private PlayerStateShark _shark;
-    private PlayerStateEagle _eagle;
     Dictionary<PlayerState, IPlayerState> _stateTable;
-    #endregion
-
-    #region unity methods
-    private void Awake()
-    {
-        _wolf = GetComponent<PlayerStateWolf>();
-        _shark = GetComponent<PlayerStateShark>();
-        _eagle = GetComponent<PlayerStateEagle>();
-    }
     #endregion
 
     #region public method

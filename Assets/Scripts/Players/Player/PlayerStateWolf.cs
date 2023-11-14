@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerStateWolf : PlayerStateBase
 {
     #region serialize
+    [SerializeField]
+    private WolfStateController _controller = default;
     #endregion
 
     #region unity methods
@@ -23,6 +25,7 @@ public class PlayerStateWolf : PlayerStateBase
     public override void UpdateSequence()
     {
         base.UpdateSequence();
+        _controller.UpdateSequence();
     }
 
     public override void Exit()
