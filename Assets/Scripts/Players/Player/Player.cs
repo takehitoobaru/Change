@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     #endregion
 
     #region serialize
+    [Tooltip("ステートコントローラー")]
     [SerializeField]
     private PlayerStateController _controller = default;
     #endregion
