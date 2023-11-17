@@ -35502,6 +35502,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1590691259}
   - component: {fileID: 1590691260}
+  - component: {fileID: 1590691262}
+  - component: {fileID: 1590691261}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -35518,7 +35520,7 @@ Transform:
   m_GameObject: {fileID: 1590691258}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -11}
+  m_LocalPosition: {x: 0, y: 0.91, z: -11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -35538,6 +35540,56 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _controller: {fileID: 1752930126}
+--- !u!54 &1590691261
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1590691258}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
+--- !u!136 &1590691262
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1590691258}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.41282558
+  m_Height: 2.6707869
+  m_Direction: 2
+  m_Center: {x: 0, y: -0.27999997, z: 0.15514803}
 --- !u!1 &1752930125
 GameObject:
   m_ObjectHideFlags: 0
@@ -35686,7 +35738,7 @@ PrefabInstance:
     - target: {fileID: 2282090589925773697, guid: 830acac0cf6dd7f47a9f6432fc75fdb0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.87
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2282090589925773697, guid: 830acac0cf6dd7f47a9f6432fc75fdb0,
         type: 3}
@@ -35743,12 +35795,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wolf
       objectReference: {fileID: 0}
+    - target: {fileID: 6380159152764391292, guid: 830acac0cf6dd7f47a9f6432fc75fdb0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8032747166924780236, guid: 830acac0cf6dd7f47a9f6432fc75fdb0,
         type: 3}
       propertyPath: _player
       value: 
       objectReference: {fileID: 1590691260}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6033202092311509817, guid: 830acac0cf6dd7f47a9f6432fc75fdb0, type: 3}
+    - {fileID: 7118908682095072240, guid: 830acac0cf6dd7f47a9f6432fc75fdb0, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -35792,12 +35851,12 @@ PrefabInstance:
     - target: {fileID: 2705708760949576795, guid: dab771b80101b6f4e90381976b5cee8e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.2
+      value: -2.19
       objectReference: {fileID: 0}
     - target: {fileID: 2705708760949576795, guid: dab771b80101b6f4e90381976b5cee8e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 2705708760949576795, guid: dab771b80101b6f4e90381976b5cee8e,
         type: 3}
@@ -35839,7 +35898,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Eagle
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 2906205205440711088, guid: dab771b80101b6f4e90381976b5cee8e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2265658796230254466, guid: dab771b80101b6f4e90381976b5cee8e, type: 3}
+    - {fileID: 244193509655921942, guid: dab771b80101b6f4e90381976b5cee8e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -35878,7 +35944,7 @@ PrefabInstance:
     - target: {fileID: 3714102234946318267, guid: 388856c426c55ea418673600e5ffaed6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.87
       objectReference: {fileID: 0}
     - target: {fileID: 3714102234946318267, guid: 388856c426c55ea418673600e5ffaed6,
         type: 3}
@@ -35925,12 +35991,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shark
       objectReference: {fileID: 0}
+    - target: {fileID: 6660891287357131778, guid: 388856c426c55ea418673600e5ffaed6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7902984929061968433, guid: 388856c426c55ea418673600e5ffaed6,
         type: 3}
       propertyPath: _player
       value: 
       objectReference: {fileID: 1590691260}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2896587335658515789, guid: 388856c426c55ea418673600e5ffaed6, type: 3}
+    - {fileID: 2887317633059896024, guid: 388856c426c55ea418673600e5ffaed6, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

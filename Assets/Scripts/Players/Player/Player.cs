@@ -17,6 +17,23 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Constant
+    private const float WOLF_COL_CENTER_X = 0;
+    private const float WOLF_COL_CENTER_Y = -0.28f;
+    private const float WOLF_COL_CENTER_Z = 0.2671609f;
+    private const float WOLF_COL_RADIUS = 0.4128256f;
+    private const float WOLF_COL_HEIGHT = 1.534322f;
+
+    private const float SHARK_COL_CENTER_X = 0;
+    private const float SHARK_COL_CENTER_Y = -0.28f;
+    private const float SHARK_COL_CENTER_Z = 0.155148f;
+    private const float SHARK_COL_RADIUS = 0.4128256f;
+    private const float SHARK_COL_HEIGHT = 2.670787f;
+
+    private const float EAGLE_COL_CENTER_X = 0;
+    private const float EAGLE_COL_CENTER_Y = -0.28f;
+    private const float EAGLE_COL_CENTER_Z = 0.2671609f;
+    private const float EAGLE_COL_RADIUS = 0.4128256f;
+    private const float EAGLE_COL_HEIGHT = 1.534322f;
     #endregion
 
     #region Event
@@ -25,7 +42,7 @@ public class Player : MonoBehaviour
     #region unity methods
     private void Awake()
     {
-
+        
     }
 
     private void Start()
