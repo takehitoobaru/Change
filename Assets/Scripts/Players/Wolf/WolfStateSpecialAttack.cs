@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// WolfÇÃì¡éÍçUåÇèÛë‘
+/// </summary>
 public class WolfStateSpecialAttack : WolfStateBase
 {
     #region property
@@ -19,24 +22,26 @@ public class WolfStateSpecialAttack : WolfStateBase
     #region Event
     #endregion
 
-    #region unity methods
-    private void Awake()
-    {
-
-    }
-
-    private void Start()
-    {
-
-    }
-
-    private void Update()
-    {
-
-    }
-    #endregion
-
     #region public method
+    public override void Entry()
+    {
+        base.Entry();
+    }
+
+    public override void UpdateSequence()
+    {
+        base.UpdateSequence();
+    }
+
+    public override void FixedUpdateSequence()
+    {
+        base.FixedUpdateSequence();
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+    }
     #endregion
 
     #region private method

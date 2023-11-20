@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Shark‚ÌˆÚ“®ó‘Ô
+/// </summary>
 public class SharkStateRun : SharkStateBase
 {
     #region property

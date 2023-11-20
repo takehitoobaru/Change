@@ -2,16 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Sharkのステートコントローラー
+/// </summary>
 public class SharkStateController : MonoBehaviour
 {
     #region private
+    /// <summary>初期化用</summary>
     private bool _init = false;
+    /// <summary>現在の状態</summary>
     private ISharkState _currentState;
+    /// <summary>直前の状態</summary>
     private ISharkState _previousState;
+    /// <summary>待機状態</summary>
     private SharkStateIdle _idle;
+    /// <summary>移動状態</summary>
     private SharkStateRun _run;
+    /// <summary>攻撃状態</summary>
     private SharkStateAttack _attack;
+    /// <summary>特殊攻撃状態</summary>
     private SharkStateSpecialAttack _specialAttack;
+    /// <summary>テーブル</summary>
     Dictionary<SharkState, ISharkState> _stateTable;
     #endregion
 
@@ -59,6 +70,8 @@ public class SharkStateController : MonoBehaviour
     }
 
     public void UpdateSequence() => _currentState?.UpdateSequence();
+
+    public void FixedUpdateSequence() => _currentState?.FixedUpdateSequence();
     #endregion
 
 }

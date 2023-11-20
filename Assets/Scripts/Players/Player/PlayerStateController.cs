@@ -2,23 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Playerのステートコントローラー
+/// </summary>
 public class PlayerStateController : MonoBehaviour
 {
     #region serialize
+    [Tooltip("狼")]
     [SerializeField]
     private PlayerStateWolf _wolf = default;
 
+    [Tooltip("鮫")]
     [SerializeField]
     private PlayerStateShark _shark = default;
 
+    [Tooltip("鷲")]
     [SerializeField]
     private PlayerStateEagle _eagle = default;
     #endregion
 
     #region private
+    /// <summary>初期化用</summary>
     private bool _init = false;
+    /// <summary>現在の状態</summary>
     private IPlayerState _currentState;
+    /// <summary>直前の状態</summary>
     private IPlayerState _previousState;
+    /// <summary>テーブル</summary>
     Dictionary<PlayerState, IPlayerState> _stateTable;
     #endregion
 
@@ -55,6 +65,8 @@ public class PlayerStateController : MonoBehaviour
     }
 
     public void UpdateSequence() => _currentState?.UpdateSequence();
+
+    public void FixedUpdateSequence() => _currentState?.FixedUpdateSequence();
     #endregion
 
     #region private method

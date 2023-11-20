@@ -2,16 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Eagleのステートコントローラー
+/// </summary>
 public class EagleStateController : MonoBehaviour
 {
     #region private
+    /// <summary>初期化用</summary>
     private bool _init = false;
+    /// <summary>現在の状態</summary>
     private IEagleState _currentState;
+    /// <summary>直前の状態</summary>
     private IEagleState _previousState;
+    /// <summary>待機状態</summary>
     private EagleStateIdle _idle;
+    /// <summary>移動状態</summary>
     private EagleStateRun _run;
+    /// <summary>攻撃状態</summary>
     private EagleStateAttack _attack;
+    /// <summary>特殊攻撃状態</summary>
     private EagleStateSpecialAttack _specialAttack;
+    /// <summary>テーブル</summary>
     Dictionary<EagleState, IEagleState> _stateTable;
     #endregion
 
@@ -59,5 +70,7 @@ public class EagleStateController : MonoBehaviour
     }
 
     public void UpdateSequence() => _currentState?.UpdateSequence();
+
+    public void FixedUpdateSequence() => _currentState?.FixedUpdateSequence();
     #endregion
 }

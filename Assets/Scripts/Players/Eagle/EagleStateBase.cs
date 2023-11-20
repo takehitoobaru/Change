@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Eagleの状態のベースクラス
+/// </summary>
 public class EagleStateBase : MonoBehaviour,IEagleState
 {
     #region property
@@ -9,6 +12,7 @@ public class EagleStateBase : MonoBehaviour,IEagleState
     #endregion
 
     #region serialize
+    [Tooltip("鷲")]
     [SerializeField]
     protected PlayerStateEagle _eagle = default;
     #endregion
@@ -21,6 +25,8 @@ public class EagleStateBase : MonoBehaviour,IEagleState
     public virtual void Entry() { }
 
     public virtual void UpdateSequence() { }
+
+    public virtual void FixedUpdateSequence() { }
 
     public virtual void Exit() { }
     #endregion

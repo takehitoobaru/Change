@@ -2,41 +2,54 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// WolfÇÃà⁄ìÆèÛë‘
+/// </summary>
 public class WolfStateRun : WolfStateBase
 {
     #region property
     #endregion
 
     #region serialize
-    #endregion
+    [Tooltip("à⁄ìÆë¨ìx")]
+    [SerializeField]
+    private float _speed = 3.0f;
 
-    #region private
-    #endregion
-
-    #region Constant
-    #endregion
-
-    #region Event
-    #endregion
-
-    #region unity methods
-    private void Awake()
-    {
-
-    }
-
-    private void Start()
-    {
-
-    }
-
-    private void Update()
-    {
-
-    }
+    [Tooltip("âÒì]ë¨ìx")]
+    [SerializeField]
+    private float _rotateSpeed = 0.1f;
     #endregion
 
     #region public method
+    public override void Entry()
+    {
+        base.Entry();
+    }
+
+    public override void UpdateSequence()
+    {
+        base.UpdateSequence();
+
+        if (_wolf.Player.Horizontal == 0 && _wolf.Player.Vertical == 0)
+        {
+            _wolf.Idle();
+        }
+
+        _wolf.Player.PlayerRotate(_rotateSpeed);
+    }
+
+    public override void FixedUpdateSequence()
+    {
+        base.FixedUpdateSequence();
+
+        if (_wolf.Player.Horizontal == 0 && _wolf.Player.Vertical == 0) return;
+        _wolf.Player.PlayerMove(_speed);
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+    }
     #endregion
 
     #region private method

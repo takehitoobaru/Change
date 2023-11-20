@@ -2,16 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Wolfのステートコントローラー
+/// </summary>
 public class WolfStateController : MonoBehaviour
 {
     #region private
+    /// <summary>初期化用</summary>
     private bool _init = false;
+    /// <summary>現在の状態</summary>
     private IWolfState _currentState;
+    /// <summary>直前の状態</summary>
     private IWolfState _previousState;
+    /// <summary>待機状態</summary>
     private WolfStateIdle _idle;
+    /// <summary>移動状態</summary>
     private WolfStateRun _run;
+    /// <summary>攻撃状態</summary>
     private WolfStateAttack _attack;
+    /// <summary>特殊攻撃状態</summary>
     private WolfStateSpecialAttack _specialAttack;
+    /// <summary>テーブル</summary>
     Dictionary<WolfState, IWolfState> _stateTable;
     #endregion
 
@@ -59,5 +70,7 @@ public class WolfStateController : MonoBehaviour
     }
 
     public void UpdateSequence() => _currentState?.UpdateSequence();
+
+    public void FixedUpdateSequence() => _currentState?.FixedUpdateSequence();
     #endregion
 }
