@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// ƒXƒ‰ƒCƒ€‚Ì“ÁêUŒ‚ó‘Ô
+/// </summary>
 public class SlimeStateSpecialAttack : SlimeStateBase
 {
     #region property

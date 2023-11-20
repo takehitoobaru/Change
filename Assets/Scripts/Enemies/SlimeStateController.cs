@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// スライムのステートコントローラー
+/// </summary>
 public class SlimeStateController : MonoBehaviour
 {
     #region property
@@ -11,14 +14,23 @@ public class SlimeStateController : MonoBehaviour
     #endregion
 
     #region private
+    /// <summary>初期化用</summary>
     private bool _init = false;
+    /// <summary>現在の状態</summary>
     private ISlimeState _currentState;
+    /// <summary>直前の状態</summary>
     private ISlimeState _previousState;
+    /// <summary>待機状態コンポーネント</summary>
     private SlimeStateIdle _idle;
+    /// <summary>探索状態コンポーネント</summary>
     private SlimeStateSearch _search;
+    /// <summary>追跡状態コンポーネント</summary>
     private SlimeStateChase _chase;
+    /// <summary>攻撃状態コンポーネント</summary>
     private SlimeStateAttack _attack;
+    /// <summary>特殊攻撃状態コンポーネント</summary>
     private SlimeStateSpecialAttack _specialAttack;
+    /// <summary>テーブル</summary>
     Dictionary<SlimeState, ISlimeState> _stateTable;
     #endregion
 
@@ -32,6 +44,10 @@ public class SlimeStateController : MonoBehaviour
     }
 
     #region public method
+    /// <summary>
+    /// 初期化
+    /// </summary>
+    /// <param name="initState">最初の状態</param>
     public void Init(SlimeState initState)
     {
         if (_stateTable != null) return;
@@ -49,7 +65,10 @@ public class SlimeStateController : MonoBehaviour
         _init = true;
     }
 
-    
+    /// <summary>
+    /// 状態変更
+    /// </summary>
+    /// <param name="next">次の状態</param>
     public void ChangeState(SlimeState next)
     {
         if (_stateTable == null) return;
@@ -65,6 +84,9 @@ public class SlimeStateController : MonoBehaviour
         _currentState.Entry();
     }
 
+    /// <summary>
+    /// 現在の状態のUpdateを実行
+    /// </summary>
     public void UpdateSequence() => _currentState?.UpdateSequence();
     #endregion
 }

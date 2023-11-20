@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// サーチエリア
+/// </summary>
 public class SearchArea : MonoBehaviour
 {
     #region serialize

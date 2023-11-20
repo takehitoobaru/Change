@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// ƒXƒ‰ƒCƒ€‚Ì‘Ò‹@ó‘Ô
+/// </summary>
 public class SlimeStateIdle : SlimeStateBase
 {
     #region property
@@ -48,6 +51,10 @@ public class SlimeStateIdle : SlimeStateBase
     #endregion
 
     #region coroutine method
+    /// <summary>
+    /// ‘Ò‚¿ŠÔ•ª‘Ò‚Â
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator IdleCoroutine()
     {
         yield return new WaitForSeconds(_slime.WaitTime);

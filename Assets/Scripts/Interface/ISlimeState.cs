@@ -1,4 +1,6 @@
-
+/// <summary>
+/// SlimeのState用インターフェース
+/// </summary>
 public interface ISlimeState
 {
     /// <summary>状態取得</summary>

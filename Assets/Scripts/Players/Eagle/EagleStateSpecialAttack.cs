@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Eagle‚Ì“ÁêUŒ‚ó‘Ô
+/// </summary>
 public class EagleStateSpecialAttack : EagleStateBase
 {
     #region property

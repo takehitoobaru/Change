@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// ƒXƒ‰ƒCƒ€‚Ì’Tõó‘Ô
+/// </summary>
 public class SlimeStateSearch : SlimeStateBase
 {
     #region property
