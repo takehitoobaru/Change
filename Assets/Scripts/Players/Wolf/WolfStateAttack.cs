@@ -1,8 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using UniRx;
+using UniRx.Triggers;
 
 /// <summary>
 /// WolfÇÃçUåÇèÛë‘
@@ -19,17 +22,26 @@ public class WolfStateAttack : WolfStateBase
 
     [SerializeField]
     private GameObject _attackPrefab = default;
+
+    [SerializeField]
+    private float _coolTime = 3.0f;
     #endregion
 
     #region private
     private Vector3 _targetPos;
     private List<Transform> _enemyTransforms = new List<Transform>();
+    private ButtonController _buttonCtrl;
     #endregion
 
     #region unity methods
     private void Start()
     {
-        _attackButton.onClick.AddListener(OnAttack);
+        _buttonCtrl = _attackButton.gameObject.GetComponent<ButtonController>();
+
+        _attackButton.OnClickAsObservable()
+                     .TakeUntilDestroy(_attackButton)
+                     .ThrottleFirst(TimeSpan.FromSeconds(_coolTime))
+                     .Subscribe(_ => OnAttack());
     }
 
     private void OnTriggerEnter(Collider other)
@@ -98,6 +110,8 @@ public class WolfStateAttack : WolfStateBase
             SetTarget();
 
             ObjectPool.Instance.GetGameObject(_attackPrefab, _targetPos);
+
+            _buttonCtrl.FillImage(_coolTime);
 
             _wolf.Idle();
         }
