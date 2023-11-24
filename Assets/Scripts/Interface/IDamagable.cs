@@ -3,5 +3,12 @@
 /// </summary>
 public interface IDamagable
 {
-    void Damage(int amount);
+    void Damage(int amount,Element element);
+}
+
+public enum Element
+{
+    Fire,
+    Water,
+    Wind
 }
