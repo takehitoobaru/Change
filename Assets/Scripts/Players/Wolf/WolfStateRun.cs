@@ -20,6 +20,13 @@ public class WolfStateRun : WolfStateBase
     private float _rotateSpeed = 0.1f;
     #endregion
 
+    #region unity methods
+    private void Start()
+    {
+        _state = WolfState.Run;
+    }
+    #endregion
+
     #region public method
     public override void Entry()
     {

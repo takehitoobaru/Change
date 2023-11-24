@@ -22,6 +22,13 @@ public class WolfStateSpecialAttack : WolfStateBase
     #region Event
     #endregion
 
+    #region unity methods
+    private void Start()
+    {
+        _state = WolfState.Run;
+    }
+    #endregion
+
     #region public method
     public override void Entry()
     {

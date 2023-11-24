@@ -22,7 +22,10 @@ public class WolfStateBase : MonoBehaviour,IWolfState
     #endregion
 
     #region public method
-    public virtual void Entry() { }
+    public virtual void Entry() 
+    {
+        Debug.Log(_state);
+    }
 
     public virtual void UpdateSequence() { }
 
