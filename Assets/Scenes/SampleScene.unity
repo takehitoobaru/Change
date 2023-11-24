@@ -34934,6 +34934,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _controller: {fileID: 393371973}
+  _maxHP: 30
+  _element: 1
 --- !u!1 &628076474
 GameObject:
   m_ObjectHideFlags: 0
@@ -36085,6 +36087,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfe3a0268606dc741b415ffdcb34193d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maxHP: 100
   _controller: {fileID: 1752930126}
 --- !u!54 &1590691261
 Rigidbody:
@@ -36471,6 +36474,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6074191396612149204, guid: 497dbd39732fc384ea0a15f99ed9d25d,
         type: 3}
+    - target: {fileID: 5111940521159889469, guid: 830acac0cf6dd7f47a9f6432fc75fdb0,
+        type: 3}
+      propertyPath: _cantMoveTime
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6380159152764391292, guid: 830acac0cf6dd7f47a9f6432fc75fdb0,
         type: 3}
       propertyPath: m_Name
@@ -36491,6 +36499,11 @@ PrefabInstance:
       propertyPath: _controller
       value: 
       objectReference: {fileID: 1718896935}
+    - target: {fileID: 8032747166924780236, guid: 830acac0cf6dd7f47a9f6432fc75fdb0,
+        type: 3}
+      propertyPath: _attackButton
+      value: 
+      objectReference: {fileID: 1171777551}
     m_RemovedComponents:
     - {fileID: 6033202092311509817, guid: 830acac0cf6dd7f47a9f6432fc75fdb0, type: 3}
     - {fileID: 7118908682095072240, guid: 830acac0cf6dd7f47a9f6432fc75fdb0, type: 3}

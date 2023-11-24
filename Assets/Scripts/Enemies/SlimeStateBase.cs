@@ -24,7 +24,7 @@ public abstract class SlimeStateBase : MonoBehaviour,ISlimeState
     #region public method
     public virtual void Entry()
     {
-        Debug.Log(SlimeState);
+        
     }
 
     public virtual void UpdateSequence() { }
