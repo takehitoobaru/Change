@@ -5,7 +5,6 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
-using UniRx.Triggers;
 
 /// <summary>
 /// Wolfの攻撃状態
@@ -16,32 +15,26 @@ public class WolfStateAttack : WolfStateBase
     #endregion
 
     #region serialize
-    [Tooltip("アタックボタン")]
-    [SerializeField]
-    private Button _attackButton = default;
-
+    [Tooltip("攻撃のプレハブ")]
     [SerializeField]
     private GameObject _attackPrefab = default;
 
+    [Tooltip("硬直時間")]
     [SerializeField]
-    private float _coolTime = 3.0f;
+    private float _cantMoveTime = 1.5f;
     #endregion
 
     #region private
+    /// <summary>ターゲットのポジション</summary>
     private Vector3 _targetPos;
+    /// <summary>範囲内の敵のリスト</summary>
     private List<Transform> _enemyTransforms = new List<Transform>();
-    private ButtonController _buttonCtrl;
     #endregion
 
     #region unity methods
     private void Start()
     {
-        _buttonCtrl = _attackButton.gameObject.GetComponent<ButtonController>();
-
-        _attackButton.OnClickAsObservable()
-                     .TakeUntilDestroy(_attackButton)
-                     .ThrottleFirst(TimeSpan.FromSeconds(_coolTime))
-                     .Subscribe(_ => OnAttack());
+        _state = WolfState.Attack;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -65,6 +58,7 @@ public class WolfStateAttack : WolfStateBase
     public override void Entry()
     {
         base.Entry();
+        OnAttack();
     }
 
     public override void UpdateSequence()
@@ -84,6 +78,9 @@ public class WolfStateAttack : WolfStateBase
     #endregion
 
     #region private method
+    /// <summary>
+    /// 一番近い敵のポジションを取得
+    /// </summary>
     private void SetTarget()
     {
         Transform near = _enemyTransforms.First();
@@ -102,19 +99,37 @@ public class WolfStateAttack : WolfStateBase
         _targetPos = near.position;
     }
 
+    /// <summary>
+    /// 敵のほうを向く
+    /// </summary>
+    private void TargetDirRotate()
+    {
+        _wolf.Player.transform.LookAt(new Vector3(_targetPos.x,_wolf.Player.transform.position.y,_targetPos.z));
+    }
+
+    /// <summary>
+    /// 攻撃
+    /// </summary>
     private void OnAttack()
     {
+        //リストがnullかカウントが0でないなら
         if (_enemyTransforms?.Count > 0)
         {
-
             SetTarget();
+            TargetDirRotate();
 
             ObjectPool.Instance.GetGameObject(_attackPrefab, _targetPos);
 
-            _buttonCtrl.FillImage(_coolTime);
-
-            _wolf.Idle();
+            StartCoroutine(CanNotMoveCoroutine());
         }
+    }
+    #endregion
+
+    #region coroutine method
+    private IEnumerator CanNotMoveCoroutine()
+    {
+        yield return new WaitForSeconds(_cantMoveTime);
+        _wolf.Idle();
     }
     #endregion
 }

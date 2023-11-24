@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UniRx;
 
 /// <summary>
 /// Playerの狼状態
@@ -8,15 +11,34 @@ using UnityEngine;
 public class PlayerStateWolf : PlayerStateBase
 {
     #region serialize
+    [Tooltip("攻撃のクールタイム")]
+    [SerializeField]
+    private float _attackCoolTime = 3.0f;
+
     [Tooltip("ステートコントローラー")]
     [SerializeField]
     private WolfStateController _controller = default;
+
+    [Tooltip("アタックボタン")]
+    [SerializeField]
+    private Button _attackButton = default;
+    #endregion
+
+    #region private
+    private ButtonController _buttonCtrl;
     #endregion
 
     #region unity methods
     private void Start()
     {
         _state = PlayerState.Wolf;
+
+        _buttonCtrl = _attackButton.gameObject.GetComponent<ButtonController>();
+
+        _attackButton.OnClickAsObservable()
+             .TakeUntilDestroy(_attackButton)
+             .ThrottleFirst(TimeSpan.FromSeconds(_attackCoolTime))
+             .Subscribe(_ => Attack());
     }
     #endregion
 
@@ -58,6 +80,7 @@ public class PlayerStateWolf : PlayerStateBase
 
     public void Attack()
     {
+        _buttonCtrl.FillImage(_attackCoolTime);
         _controller.ChangeState(WolfState.Attack);
     }
 
