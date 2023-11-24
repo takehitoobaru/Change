@@ -6,7 +6,7 @@ using UnityEngine.AI;
 /// <summary>
 /// スライム
 /// </summary>
-public class Slime : MonoBehaviour
+public class Slime : MonoBehaviour,IDamagable
 {
     #region property
     public float WaitTime => _waitTime;
@@ -20,9 +20,16 @@ public class Slime : MonoBehaviour
     [Tooltip("ステートコントローラー")]
     [SerializeField]
     private SlimeStateController _controller = default;
+
+    [SerializeField]
+    private int _maxHP = 30;
+
+    [SerializeField]
+    private Element _element = Element.Water;
     #endregion
 
     #region private
+    private int _hitPoint = 30;
     /// <summary>待ち時間</summary>
     private float _waitTime = 1f;
     /// <summary>サーチエリアにプレイヤーがいるかどうか</summary>
@@ -38,6 +45,7 @@ public class Slime : MonoBehaviour
     #region unity methods
     private void Awake()
     {
+        _hitPoint = _maxHP;
         _agent = GetComponent<NavMeshAgent>();
     }
 
@@ -133,6 +141,58 @@ public class Slime : MonoBehaviour
     public void SetWaitTime(float waitTime)
     {
         _waitTime = waitTime;
+    }
+
+    public void Damage(int amount,Element element)
+    {
+        var damageAmount = amount;
+
+        switch (element)
+        {
+            //敵の攻撃が炎の場合
+            case Element.Fire:
+                //自分が水の場合
+                if (_element == Element.Water)
+                {
+                    damageAmount = amount / 2;
+                }
+                //自分が風の場合
+                else if (_element == Element.Wind)
+                {
+                    damageAmount = amount * 2;
+                }
+                break;
+            //敵の攻撃が水の場合
+            case Element.Water:
+                //自分が風の場合
+                if (_element == Element.Wind)
+                {
+                    damageAmount = amount / 2;
+                }
+                //自分が炎の場合
+                else if (_element == Element.Fire)
+                {
+                    damageAmount = amount * 2;
+                }
+                break;
+            //敵の攻撃が風の場合
+            case Element.Wind:
+                //自分が炎の場合
+                if (_element == Element.Fire)
+                {
+                    damageAmount = amount / 2;
+                }
+                //自分が水の場合
+                else if (_element == Element.Water)
+                {
+                    damageAmount = amount * 2;
+                }
+                break;
+            default:
+                break;
+        }
+
+        _hitPoint -= damageAmount;
     }
     #endregion
 

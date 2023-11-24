@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// プレイヤー
 /// </summary>
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour,IDamagable
 {
     #region property
     public float Horizontal => _horizontal;
@@ -13,12 +13,20 @@ public class Player : MonoBehaviour
     #endregion
 
     #region serialize
+    [Tooltip("最大体力")]
+    [SerializeField]
+    private int _maxHP = 100;
+
     [Tooltip("ステートコントローラー")]
     [SerializeField]
     private PlayerStateController _controller = default;
     #endregion
 
     #region private
+    /// <summary>体力</summary>
+    private int _hitPoint = 100;
+    /// <summary>属性</summary>
+    private Element _element = Element.Fire;
     /// <summary>横の入力</summary>
     private float _horizontal = 0;
     /// <summary>縦の入力</summary>
@@ -58,6 +66,7 @@ public class Player : MonoBehaviour
     #region unity methods
     private void Awake()
     {
+        _hitPoint = _maxHP;
         _rb = GetComponent<Rigidbody>();
         _col = GetComponent<CapsuleCollider>();
     }
@@ -86,6 +95,7 @@ public class Player : MonoBehaviour
     /// </summary>
     public void ChangeWolf()
     {
+        _element = Element.Fire;
         _controller.ChangeState(PlayerState.Wolf);
     }
 
@@ -94,6 +104,7 @@ public class Player : MonoBehaviour
     /// </summary>
     public void ChangeShark()
     {
+        _element = Element.Water;
         _controller.ChangeState(PlayerState.Shark);
     }
 
@@ -102,6 +113,7 @@ public class Player : MonoBehaviour
     /// </summary>
     public void ChangeEagle()
     {
+        _element = Element.Wind;
         _controller.ChangeState(PlayerState.Eagle);
     }
 
@@ -124,6 +136,63 @@ public class Player : MonoBehaviour
     public void PlayerMove(float speed)
     {
         _rb.velocity = transform.forward * speed;
+    }
+
+    /// <summary>
+    /// ダメージを受ける処理
+    /// </summary>
+    /// <param name="amount">ダメージ量</param>
+    public void Damage(int amount,Element element)
+    {
+        var damageAmount = amount;
+
+        switch (element)
+        {
+            //敵の攻撃が炎の場合
+            case Element.Fire:
+                //自分が水の場合
+                if(_element == Element.Water)
+                {
+                    damageAmount = amount / 2;
+                }
+                //自分が風の場合
+                else if(_element == Element.Wind)
+                {
+                    damageAmount = amount * 2;
+                }
+                break;
+            //敵の攻撃が水の場合
+            case Element.Water:
+                //自分が風の場合
+                if (_element == Element.Wind)
+                {
+                    damageAmount = amount / 2;
+                }
+                //自分が炎の場合
+                else if (_element == Element.Fire)
+                {
+                    damageAmount = amount * 2;
+                }
+                break;
+            //敵の攻撃が風の場合
+            case Element.Wind:
+                //自分が炎の場合
+                if (_element == Element.Fire)
+                {
+                    damageAmount = amount / 2;
+                }
+                //自分が水の場合
+                else if (_element == Element.Water)
+                {
+                    damageAmount = amount * 2;
+                }
+                break;
+            default:
+                break;
+        }
+
+        _hitPoint -= damageAmount;
+        Debug.Log(_hitPoint);
     }
     #endregion
 
