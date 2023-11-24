@@ -4931,7 +4931,7 @@ GameObject:
   - component: {fileID: -7743069423752006531}
   m_Layer: 0
   m_Name: EnemyAttackWater
-  m_TagString: EnemyAttackWater
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9879,6 +9879,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 333726e0ed80ff24dbfbce9c93072cc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _attackAmount: 10
+  _attackElement: 1
+  _charaType: 1
 --- !u!1 &5436070549908702553
 GameObject:
   m_ObjectHideFlags: 0
