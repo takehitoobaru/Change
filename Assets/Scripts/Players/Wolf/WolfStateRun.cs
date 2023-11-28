@@ -7,9 +7,6 @@ using UnityEngine;
 /// </summary>
 public class WolfStateRun : WolfStateBase
 {
-    #region property
-    #endregion
-
     #region serialize
     [Tooltip("ˆÚ“®‘¬“x")]
     [SerializeField]
@@ -57,8 +54,5 @@ public class WolfStateRun : WolfStateBase
     {
         base.Exit();
     }
-    #endregion
-
-    #region private method
     #endregion
 }

@@ -7,21 +7,6 @@ using UnityEngine;
 /// </summary>
 public class SharkStateIdle : SharkStateBase
 {
-    #region property
-    #endregion
-
-    #region serialize
-    #endregion
-
-    #region private
-    #endregion
-
-    #region Constant
-    #endregion
-
-    #region Event
-    #endregion
-
     #region unity methods
     private void Start()
     {
@@ -53,8 +38,5 @@ public class SharkStateIdle : SharkStateBase
     {
         base.Exit();
     }
-    #endregion
-
-    #region private method
     #endregion
 }

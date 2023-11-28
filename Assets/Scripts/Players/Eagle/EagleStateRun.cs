@@ -7,41 +7,52 @@ using UnityEngine;
 /// </summary>
 public class EagleStateRun : EagleStateBase
 {
-    #region property
-    #endregion
-
     #region serialize
-    #endregion
+    [Tooltip("ˆÚ“®‘¬“x")]
+    [SerializeField]
+    private float _speed = 3.0f;
 
-    #region private
-    #endregion
-
-    #region Constant
-    #endregion
-
-    #region Event
+    [Tooltip("‰ñ“]‘¬“x")]
+    [SerializeField]
+    private float _rotateSpeed = 0.1f;
     #endregion
 
     #region unity methods
-    private void Awake()
-    {
-
-    }
-
     private void Start()
     {
-
-    }
-
-    private void Update()
-    {
-
+        _state = EagleState.Run;
     }
     #endregion
 
     #region public method
-    #endregion
+    public override void Entry()
+    {
+        base.Entry();
+    }
 
-    #region private method
+    public override void UpdateSequence()
+    {
+        base.UpdateSequence();
+
+        if (_eagle.Player.Horizontal == 0 && _eagle.Player.Vertical == 0)
+        {
+            _eagle.Idle();
+        }
+
+        _eagle.Player.PlayerRotate(_rotateSpeed);
+    }
+
+    public override void FixedUpdateSequence()
+    {
+        base.FixedUpdateSequence();
+
+        if (_eagle.Player.Horizontal == 0 && _eagle.Player.Vertical == 0) return;
+        _eagle.Player.PlayerMove(_speed);
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+    }
     #endregion
 }

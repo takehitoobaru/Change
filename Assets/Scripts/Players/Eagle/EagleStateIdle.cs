@@ -7,41 +7,36 @@ using UnityEngine;
 /// </summary>
 public class EagleStateIdle : EagleStateBase
 {
-    #region property
-    #endregion
-
-    #region serialize
-    #endregion
-
-    #region private
-    #endregion
-
-    #region Constant
-    #endregion
-
-    #region Event
-    #endregion
-
     #region unity methods
-    private void Awake()
-    {
-
-    }
-
     private void Start()
     {
-
-    }
-
-    private void Update()
-    {
-
+        _state = EagleState.Idle;
     }
     #endregion
 
     #region public method
-    #endregion
+    public override void Entry()
+    {
+        base.Entry();
+    }
 
-    #region private method
+    public override void UpdateSequence()
+    {
+        base.UpdateSequence();
+        if (_eagle.Player.Horizontal != 0 || _eagle.Player.Vertical != 0)
+        {
+            _eagle.Run();
+        }
+    }
+
+    public override void FixedUpdateSequence()
+    {
+        base.FixedUpdateSequence();
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+    }
     #endregion
 }
