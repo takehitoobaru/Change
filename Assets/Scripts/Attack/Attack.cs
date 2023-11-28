@@ -23,6 +23,7 @@ public class Attack : MonoBehaviour
     {
         if(other.CompareTag("Enemy") && _charaType == AttackType.Player)
         {
+            Debug.Log("‚ ‚½‚Á‚½");
             other.gameObject.GetComponent<IDamagable>().Damage(_attackAmount, _attackElement);
         }
 

@@ -21,9 +21,15 @@ public class Slime : MonoBehaviour,IDamagable
     [SerializeField]
     private SlimeStateController _controller = default;
 
+    [Tooltip("Å‘å‘Ì—Í")]
     [SerializeField]
     private int _maxHP = 30;
 
+    [Tooltip("“|‚µ‚½‚ÌƒXƒRƒA")]
+    [SerializeField]
+    private int _scorePoint = 100;
+
+    [Tooltip("‘®«")]
     [SerializeField]
     private Element _element = Element.Water;
     #endregion
@@ -57,6 +63,13 @@ public class Slime : MonoBehaviour,IDamagable
     private void Update()
     {
         _controller.UpdateSequence();
+        //€–S
+        if(_hitPoint <= 0)
+        {
+            InGameManager.Instance.AddScore(_scorePoint);
+            InGameManager.Instance.DownEnemyNum();
+            Destroy(gameObject);
+        }
     }
     #endregion
 
@@ -193,6 +206,7 @@ public class Slime : MonoBehaviour,IDamagable
         }
 
         _hitPoint -= damageAmount;
+        Debug.Log("EnemyHP:" + _hitPoint);
     }
     #endregion
 

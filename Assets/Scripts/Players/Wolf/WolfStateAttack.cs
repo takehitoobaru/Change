@@ -119,9 +119,8 @@ public class WolfStateAttack : WolfStateBase
             TargetDirRotate();
 
             ObjectPool.Instance.GetGameObject(_attackPrefab, _targetPos);
-
-            StartCoroutine(CanNotMoveCoroutine());
         }
+        StartCoroutine(CanNotMoveCoroutine());
     }
     #endregion
 

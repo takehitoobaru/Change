@@ -81,6 +81,11 @@ public class Player : MonoBehaviour,IDamagable
         _horizontal = Input.GetAxisRaw("Horizontal");
         _vertical = Input.GetAxisRaw("Vertical");
         _controller.UpdateSequence();
+
+        if(_hitPoint <= 0 || transform.position.y <= -10)
+        {
+            SceneController.Instance.ChangeScene("InGame", "Result");
+        }
     }
 
     private void FixedUpdate()
