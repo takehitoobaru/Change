@@ -7,6 +7,10 @@ using UnityEngine;
 /// </summary>
 public class PlayerStateController : MonoBehaviour
 {
+    #region property
+    public IPlayerState CurrentState => _currentState;
+    #endregion
+
     #region serialize
     [Tooltip("˜T")]
     [SerializeField]

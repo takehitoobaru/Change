@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// プレイヤー
@@ -20,6 +21,10 @@ public class Player : MonoBehaviour,IDamagable
     [Tooltip("ステートコントローラー")]
     [SerializeField]
     private PlayerStateController _controller = default;
+
+    [Tooltip("チェンジボタン")]
+    [SerializeField]
+    private Button _changeButton = default;
     #endregion
 
     #region private
@@ -69,6 +74,7 @@ public class Player : MonoBehaviour,IDamagable
         _hitPoint = _maxHP;
         _rb = GetComponent<Rigidbody>();
         _col = GetComponent<CapsuleCollider>();
+        _changeButton.onClick.AddListener(OnClickChange);
     }
 
     private void Start()
@@ -202,5 +208,31 @@ public class Player : MonoBehaviour,IDamagable
     #endregion
 
     #region private method
+    private void OnClickChange()
+    {
+        switch (_controller.CurrentState)
+        {
+            case PlayerStateWolf:
+                _col.center = new Vector3(SHARK_COL_CENTER_X, SHARK_COL_CENTER_Y, SHARK_COL_CENTER_Z);
+                _col.radius = SHARK_COL_RADIUS;
+                _col.height = SHARK_COL_HEIGHT;
+                ChangeShark();
+                break;
+            case PlayerStateShark:
+                _col.center = new Vector3(EAGLE_COL_CENTER_X, EAGLE_COL_CENTER_Y, EAGLE_COL_CENTER_Z);
+                _col.radius = EAGLE_COL_RADIUS;
+                _col.height = EAGLE_COL_HEIGHT;
+                ChangeEagle();
+                break;
+            case PlayerStateEagle:
+                _col.center = new Vector3(WOLF_COL_CENTER_X, WOLF_COL_CENTER_Y, WOLF_COL_CENTER_Z);
+                _col.radius = WOLF_COL_RADIUS;
+                _col.height = WOLF_COL_HEIGHT;
+                ChangeWolf();
+                break;
+            default:
+                break;
+        }
+    }
     #endregion
 }
