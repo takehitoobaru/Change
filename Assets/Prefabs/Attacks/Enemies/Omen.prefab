@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7878635636260612706}
   - component: {fileID: 4549732171017535094}
   m_Layer: 0
-  m_Name: WaterOmen
+  m_Name: Omen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
