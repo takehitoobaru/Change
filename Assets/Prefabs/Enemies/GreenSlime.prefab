@@ -66,7 +66,7 @@ MonoBehaviour:
   _coolTime: 1.5
   _omenPrefab: {fileID: 3527422410347503425, guid: 40447f028e327cc4e93f717338485d92,
     type: 3}
-  _attackPrefab: {fileID: 2038015877179525799, guid: 02308e14add277943a134d3a9bc7ae82,
+  _attackPrefab: {fileID: 3998368839020181625, guid: 9b3a0b6081b01834083c8bd426abecae,
     type: 3}
 --- !u!114 &3237818653229590849
 MonoBehaviour:
