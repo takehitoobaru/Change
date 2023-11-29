@@ -17,13 +17,8 @@ public class HighScoreText : MonoBehaviour
 
     private void Start()
     {
-        _highScoretext.text = "HighScore:" + GameManager.Instance.HighScore.ToString();
+        SoundManager.Instance.PlayBGM(SoundManager.Instance.TitleBGM);
+        _highScoretext.text = "HighScore:" + GameManager.Instance.HighScore;
     }
-    #endregion
-
-    #region public method
-    #endregion
-
-    #region private method
     #endregion
 }

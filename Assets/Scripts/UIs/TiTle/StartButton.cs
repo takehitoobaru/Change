@@ -20,6 +20,7 @@ public class StartButton : MonoBehaviour
     #region private method
     private void OnClickStart()
     {
+        SoundManager.Instance.StopBGM();
         SceneController.Instance.ChangeScene("Title", "InGame");
     }
     #endregion

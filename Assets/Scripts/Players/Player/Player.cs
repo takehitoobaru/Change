@@ -25,6 +25,10 @@ public class Player : MonoBehaviour,IDamagable
     [Tooltip("チェンジボタン")]
     [SerializeField]
     private Button _changeButton = default;
+
+    [Tooltip("HPバー")]
+    [SerializeField]
+    private Slider _hpBar = default;
     #endregion
 
     #region private
@@ -90,6 +94,8 @@ public class Player : MonoBehaviour,IDamagable
 
         if(_hitPoint <= 0 || transform.position.y <= -10)
         {
+            SoundManager.Instance.StopBGM();
+            GameManager.Instance.SetScore(InGameManager.Instance.Score);
             SceneController.Instance.ChangeScene("InGame", "Result");
         }
     }
@@ -155,6 +161,8 @@ public class Player : MonoBehaviour,IDamagable
     /// <param name="amount">ダメージ量</param>
     public void Damage(int amount,Element element)
     {
+        SoundManager.Instance.PlaySE(SoundManager.Instance.AttackSE);
+
         var damageAmount = amount;
 
         switch (element)
@@ -203,11 +211,30 @@ public class Player : MonoBehaviour,IDamagable
         }
 
         _hitPoint -= damageAmount;
-        Debug.Log(_hitPoint);
+        _hpBar.value = _hitPoint;
+    }
+
+    /// <summary>
+    /// 回復
+    /// </summary>
+    /// <param name="amount">回復量</param>
+    public void Heal(int amount)
+    {
+        _hitPoint += amount;
+        //体力上限を超えた場合
+        if(_hitPoint > _maxHP)
+        {
+            _hitPoint = _maxHP;
+        }
+
+        _hpBar.value = _hitPoint;
     }
     #endregion
 
     #region private method
+    /// <summary>
+    /// 交代ボタンを押した場合
+    /// </summary>
     private void OnClickChange()
     {
         switch (_controller.CurrentState)

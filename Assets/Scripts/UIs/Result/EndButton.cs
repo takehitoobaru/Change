@@ -24,6 +24,7 @@ public class EndButton : MonoBehaviour
     #region private method
     private void OnClickEnd()
     {
+        SoundManager.Instance.StopBGM();
         SceneController.Instance.ChangeScene("Result", "Title");
     }
     #endregion

@@ -17,7 +17,8 @@ public class ScoreText : MonoBehaviour
 
     private void Start()
     {
-        _scoreText.text = "Score:" + GameManager.Instance.Score.ToString();
+        SoundManager.Instance.PlayBGM(SoundManager.Instance.ResultBGM);
+        _scoreText.text = "Score:" + GameManager.Instance.Score;
     }
     #endregion
 }

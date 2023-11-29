@@ -158,6 +158,7 @@ public class Slime : MonoBehaviour,IDamagable
 
     public void Damage(int amount,Element element)
     {
+        SoundManager.Instance.PlaySE(SoundManager.Instance.AttackSE);
         var damageAmount = amount;
 
         switch (element)
