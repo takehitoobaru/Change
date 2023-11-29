@@ -33,7 +33,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     /// <param name="score">ÉXÉRÉA</param>
     public void SetScore(int score)
     {
-        _score = score;
+        _score += score;
     }
 
     /// <summary>
@@ -46,6 +46,8 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         {
             _highScore = score;
         }
+
+        _score = 0;
     }
     #endregion
 
