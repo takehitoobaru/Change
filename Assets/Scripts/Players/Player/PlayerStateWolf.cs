@@ -22,6 +22,10 @@ public class PlayerStateWolf : PlayerStateBase
     [Tooltip("アタックボタン")]
     [SerializeField]
     private Button _attackButton = default;
+
+    [Tooltip("アニメーター")]
+    [SerializeField]
+    private Animator _anim = default;
     #endregion
 
     #region private
@@ -39,6 +43,8 @@ public class PlayerStateWolf : PlayerStateBase
              .TakeUntilDestroy(_attackButton)
              .ThrottleFirst(TimeSpan.FromSeconds(_attackCoolTime))
              .Subscribe(_ => Attack());
+
+        AnimChange(false);
     }
     #endregion
 
@@ -65,6 +71,7 @@ public class PlayerStateWolf : PlayerStateBase
     public override void Exit()
     {
         base.Exit();
+        Idle();
         gameObject.SetActive(false);
     }
 
@@ -75,6 +82,7 @@ public class PlayerStateWolf : PlayerStateBase
 
     public void Run()
     {
+        AnimChange(true);
         _controller.ChangeState(WolfState.Run);
     }
 
@@ -87,6 +95,15 @@ public class PlayerStateWolf : PlayerStateBase
     public void SpecialAttack()
     {
         _controller.ChangeState(WolfState.SpecialAttack);
+    }
+
+    /// <summary>
+    /// アニメーション変更
+    /// </summary>
+    /// <param name="isRun">フラグ</param>
+    public void AnimChange(bool isRun)
+    {
+        _anim.SetBool("IsRun", isRun);
     }
     #endregion
 

@@ -65,6 +65,7 @@ public class PlayerStateEagle : PlayerStateBase
     public override void Exit()
     {
         base.Exit();
+        Idle();
         gameObject.SetActive(false);
     }
 

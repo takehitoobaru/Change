@@ -52,6 +52,7 @@ public class WolfStateRun : WolfStateBase
 
     public override void Exit()
     {
+        _wolf.AnimChange(false);
         base.Exit();
     }
     #endregion
