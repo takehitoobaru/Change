@@ -17,7 +17,6 @@ public class InGameManager : SingletonMonoBehaviour<InGameManager>
 
     #region private
     private int _score = 0;
-    private int _enemyNum = 5;
     private float _limitTime = 180f;
     #endregion
 
@@ -38,7 +37,7 @@ public class InGameManager : SingletonMonoBehaviour<InGameManager>
 
         _timeText.text = "Time:" + _limitTime.ToString("F0");
 
-        if(_limitTime <= 0 || _enemyNum <= 0)
+        if(_limitTime <= 0)
         {
             SoundManager.Instance.StopBGM();
             GameManager.Instance.SetScore(_score);
@@ -55,14 +54,6 @@ public class InGameManager : SingletonMonoBehaviour<InGameManager>
     public void AddScore(int amount)
     {
         _score += amount;
-    }
-
-    /// <summary>
-    /// “|‚·‚×‚«“G‚Ì”‚ªŒ¸­‚·‚é
-    /// </summary>
-    public void DownEnemyNum()
-    {
-        _enemyNum--;
     }
     #endregion
 
