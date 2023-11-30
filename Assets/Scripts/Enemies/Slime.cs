@@ -46,6 +46,8 @@ public class Slime : MonoBehaviour,IDamagable
     private Transform _target;
     /// <summary>NavMeshAgent</summary>
     private NavMeshAgent _agent;
+
+    private PlayerSearchArea _playerSearch;
     #endregion
 
     #region unity methods
@@ -58,6 +60,7 @@ public class Slime : MonoBehaviour,IDamagable
     private void Start()
     {
         _controller.Init(SlimeState.Idle);
+        _playerSearch = GameObject.FindGameObjectWithTag("PlayerSearchArea").GetComponent<PlayerSearchArea>();
     }
 
     private void Update()
@@ -67,9 +70,13 @@ public class Slime : MonoBehaviour,IDamagable
         if(_hitPoint <= 0)
         {
             InGameManager.Instance.AddScore(_scorePoint);
-            InGameManager.Instance.DownEnemyNum();
             Destroy(gameObject);
         }
+    }
+
+    private void OnDestroy()
+    {
+        _playerSearch.EnemyDestroy(gameObject);
     }
     #endregion
 
