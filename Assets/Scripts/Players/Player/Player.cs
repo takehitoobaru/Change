@@ -11,6 +11,8 @@ public class Player : MonoBehaviour,IDamagable
     #region property
     public float Horizontal => _horizontal;
     public float Vertical => _vertical;
+    public bool IsAttack => _isAttack;
+    public Vector3 TargetPos => _targetPos;
     #endregion
 
     #region serialize
@@ -29,6 +31,10 @@ public class Player : MonoBehaviour,IDamagable
     [Tooltip("HPバー")]
     [SerializeField]
     private Slider _hpBar = default;
+
+    [Tooltip("サーチエリア")]
+    [SerializeField]
+    private PlayerSearchArea _search = default;
     #endregion
 
     #region private
@@ -40,6 +46,10 @@ public class Player : MonoBehaviour,IDamagable
     private float _horizontal = 0;
     /// <summary>縦の入力</summary>
     private float _vertical = 0;
+    /// <summary>攻撃可能かどうか</summary>
+    private bool _isAttack = false;
+    /// <summary>一番近い敵のポジション</summary>
+    private Vector3 _targetPos;
     /// <summary>剛体</summary>
     private Rigidbody _rb;
     /// <summary>コライダー</summary>
@@ -153,6 +163,18 @@ public class Player : MonoBehaviour,IDamagable
     public void PlayerMove(float speed)
     {
         _rb.velocity = transform.forward * speed;
+    }
+
+    /// <summary>
+    /// サーチエリアの情報取得
+    /// </summary>
+    public void GetSearchInfo()
+    {
+        _isAttack = _search.ListCheck();
+        if (_isAttack == true)
+        {
+            _targetPos = _search.SetTarget();
+        }
     }
 
     /// <summary>
