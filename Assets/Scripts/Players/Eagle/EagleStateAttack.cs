@@ -18,33 +18,10 @@ public class EagleStateAttack : EagleStateBase
     private float _cantMoveTime = 1.5f;
     #endregion
 
-    #region private
-    /// <summary>ターゲットのポジション</summary>
-    private Vector3 _targetPos;
-    /// <summary>範囲内の敵のリスト</summary>
-    private List<Transform> _enemyTransforms = new List<Transform>();
-    #endregion
-
     #region unity methods
     private void Start()
     {
         _state = EagleState.Attack;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Enemy"))
-        {
-            _enemyTransforms.Add(other.transform);
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Enemy"))
-        {
-            _enemyTransforms.Remove(other.transform);
-        }
     }
     #endregion
 
@@ -52,6 +29,7 @@ public class EagleStateAttack : EagleStateBase
     public override void Entry()
     {
         base.Entry();
+        _eagle.Player.GetSearchInfo();
         OnAttack();
     }
 
@@ -73,32 +51,11 @@ public class EagleStateAttack : EagleStateBase
 
     #region private method
     /// <summary>
-    /// 一番近い敵のポジションを取得
-    /// </summary>
-    private void SetTarget()
-    {
-        Transform near = _enemyTransforms.First();
-        float distance = float.MaxValue;
-
-        foreach (Transform enemyTransform in _enemyTransforms)
-        {
-            float dist = Vector3.Distance(transform.position, enemyTransform.position);
-            if (dist < distance)
-            {
-                near = enemyTransform;
-                distance = dist;
-            }
-        }
-
-        _targetPos = near.position;
-    }
-
-    /// <summary>
     /// 敵のほうを向く
     /// </summary>
     private void TargetDirRotate()
     {
-        _eagle.Player.transform.LookAt(new Vector3(_targetPos.x, _eagle.Player.transform.position.y, _targetPos.z));
+        _eagle.Player.transform.LookAt(new Vector3(_eagle.Player.TargetPos.x, _eagle.Player.transform.position.y, _eagle.Player.TargetPos.z));
     }
 
     /// <summary>
@@ -107,12 +64,11 @@ public class EagleStateAttack : EagleStateBase
     private void OnAttack()
     {
         //リストがnullかカウントが0でないなら
-        if (_enemyTransforms?.Count > 0)
+        if (_eagle.Player.IsAttack)
         {
-            SetTarget();
             TargetDirRotate();
 
-            ObjectPool.Instance.GetGameObject(_attackPrefab, _targetPos);
+            ObjectPool.Instance.GetGameObject(_attackPrefab, _eagle.Player.TargetPos);
         }
         StartCoroutine(CanNotMoveCoroutine());
     }

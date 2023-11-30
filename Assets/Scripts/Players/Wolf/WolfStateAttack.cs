@@ -1,10 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using System;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.UI;
-using UniRx;
 
 /// <summary>
 /// Wolfの攻撃状態
@@ -25,10 +21,6 @@ public class WolfStateAttack : WolfStateBase
     #endregion
 
     #region private
-    /// <summary>ターゲットのポジション</summary>
-    private Vector3 _targetPos;
-    /// <summary>範囲内の敵のリスト</summary>
-    private List<Transform> _enemyTransforms = new List<Transform>();
     #endregion
 
     #region unity methods
@@ -36,28 +28,13 @@ public class WolfStateAttack : WolfStateBase
     {
         _state = WolfState.Attack;
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Enemy"))
-        {
-            _enemyTransforms.Add(other.transform);
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Enemy"))
-        {
-            _enemyTransforms.Remove(other.transform);
-        }
-    }
     #endregion
 
     #region public method
     public override void Entry()
     {
         base.Entry();
+        _wolf.Player.GetSearchInfo();
         OnAttack();
     }
 
@@ -78,33 +55,14 @@ public class WolfStateAttack : WolfStateBase
     #endregion
 
     #region private method
-    /// <summary>
-    /// 一番近い敵のポジションを取得
-    /// </summary>
-    private void SetTarget()
-    {
-        Transform near = _enemyTransforms.First();
-        float distance = float.MaxValue;
-
-        foreach(Transform enemyTransform in _enemyTransforms)
-        {
-            float dist = Vector3.Distance(transform.position, enemyTransform.position);
-            if(dist < distance)
-            {
-                near = enemyTransform;
-                distance = dist;
-            }
-        }
-
-        _targetPos = near.position;
-    }
+    
 
     /// <summary>
     /// 敵のほうを向く
     /// </summary>
     private void TargetDirRotate()
     {
-        _wolf.Player.transform.LookAt(new Vector3(_targetPos.x,_wolf.Player.transform.position.y,_targetPos.z));
+        _wolf.Player.transform.LookAt(new Vector3(_wolf.Player.TargetPos.x,_wolf.Player.transform.position.y,_wolf.Player.TargetPos.z));
     }
 
     /// <summary>
@@ -113,12 +71,11 @@ public class WolfStateAttack : WolfStateBase
     private void OnAttack()
     {
         //リストがnullかカウントが0でないなら
-        if (_enemyTransforms?.Count > 0)
+        if (_wolf.Player.IsAttack)
         {
-            SetTarget();
             TargetDirRotate();
 
-            ObjectPool.Instance.GetGameObject(_attackPrefab, _targetPos);
+            ObjectPool.Instance.GetGameObject(_attackPrefab, _wolf.Player.TargetPos);
         }
         StartCoroutine(CanNotMoveCoroutine());
     }
